@@ -1,8 +1,9 @@
-#include <inttypes.h>
+#include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
+#include <stdlib.h>
 
-extern struct CharNode;
+struct CharNode;
 
 
 /* Allocates and initializes a new list */
@@ -15,6 +16,9 @@ extern struct CharNode* create_list();
 * Returns 0 if successful, non-zero otherwise. */
 extern int add_to_list(struct CharNode*, char*);
 
+struct CharNode* get_last_element(struct CharNode* head);
+
+bool isEndOfString(struct CharNode* node);
 
 /* Removes the string from the front of the list and
 * returns a pointer to it. The caller is expected to free
