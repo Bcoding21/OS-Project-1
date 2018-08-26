@@ -16,7 +16,7 @@ struct Node* create_list() {
 
 int add_to_list(struct Node* head, char* cString) {
 	if (!head) { return -1; }
-	if (head->str == NULL) {
+	if (!head->str) {
 		head->str = strdup(cString);
 		return 0;
 	}
@@ -40,9 +40,7 @@ struct Node* create_node(char* cString) {
 }
 
 char* remove_from_list(struct Node* head) {
-	if (!head) {
-		return NULL;
-	}
+	if (!head) { return NULL;}
 	struct Node* temp = head;
 	head = head->next;
 	return temp->str;
@@ -50,6 +48,7 @@ char* remove_from_list(struct Node* head) {
 
 
 void print_list(struct Node* head) {
+	if (!head) { return; }
 	struct Node* currNode = head;
 	while (currNode) {
 		printf("%s", currNode->str);
@@ -58,15 +57,24 @@ void print_list(struct Node* head) {
 }
 
 void flush_list(struct Node* head) {
-
+	if (!head) { return; }
 	struct Node* currNode = head;
 	while (currNode) {
 		free(currNode->str);
+		currNode->str = NULL;
 		currNode = currNode->next;
 	}
 }
 
 
 void free_list(struct Node* head) {
-
+	printf("%s", "in free list");
+	if (!head) { return; }
+	struct Node* currNode = head;
+	while (currNode) {
+		struct Node* nextNode = currNode->next;
+		free(currNode->str);
+		free(currNode);
+		currNode = nextNode;
+	}
 }

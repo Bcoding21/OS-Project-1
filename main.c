@@ -4,9 +4,11 @@
 int main(int argc, char** argv) {
 
 	struct Node* name = create_list();
-	add_to_list(name, "BRANDON");
+	for (int i = 0; i < 100; i++) {
+		add_to_list(name, "BRANDON");
+	}
+	free_list(name);
 	print_list(name);
-	free(name);
 
 
 	

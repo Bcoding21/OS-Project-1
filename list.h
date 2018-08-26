@@ -39,6 +39,4 @@ extern void free_list(struct Node*);
 
 extern struct Node* get_last_element(struct Node* head);
 
-extern bool isEqual(struct Node* left, struct Node* right);
-
 extern struct Node* create_node(char*);
