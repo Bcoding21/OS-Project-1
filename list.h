@@ -3,7 +3,10 @@
 #include <string.h>
 #include <stdlib.h>
 
-struct Node;
+struct Node {
+	char* str;
+	struct Node* next;
+};
 
 
 /* Allocates and initializes a new list */
@@ -35,7 +38,7 @@ extern void flush_list(struct Node*);
 /* De-allocates all data for the list. Ensure all memory
 * allocated for this list is freed, including any
 * allocated strings and the list itself. */
-extern void free_list(struct Node*);
+extern void free_list(struct Node**);
 
 extern struct Node* get_last_element(struct Node* head);
 

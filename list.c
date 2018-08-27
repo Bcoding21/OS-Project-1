@@ -1,14 +1,9 @@
 #include "list.h"
 
 
-struct Node {
-	char* str;
-	struct Node* next;
-};
-
-
 struct Node* create_list() {
 	struct Node* head = malloc(sizeof(struct Node));
+	if (!head){ return NULL; }
 	head->str = NULL;
 	head->next = NULL;
 	return head;
@@ -16,7 +11,7 @@ struct Node* create_list() {
 
 int add_to_list(struct Node* head, char* cString) {
 	if (!head) { return -1; }
-	if (!head->str) {
+	if (!head->next) {
 		head->str = strdup(cString);
 		return 0;
 	}
@@ -30,7 +25,6 @@ struct Node* get_last_element(struct Node* head) {
 	while (currNode->next){currNode = currNode->next;}
 	return currNode;
 }
-
 
 struct Node* create_node(char* cString) {
 	struct Node* node = malloc(sizeof(struct Node));
@@ -48,6 +42,7 @@ char* remove_from_list(struct Node* head) {
 
 
 void print_list(struct Node* head) {
+char snum[12];
 	if (!head) { return; }
 	struct Node* currNode = head;
 	while (currNode) {
@@ -67,14 +62,14 @@ void flush_list(struct Node* head) {
 }
 
 
-void free_list(struct Node* head) {
-	printf("%s", "in free list");
+void free_list(struct Node** head) {
 	if (!head) { return; }
-	struct Node* currNode = head;
+	struct Node* currNode = *head;
 	while (currNode) {
 		struct Node* nextNode = currNode->next;
 		free(currNode->str);
 		free(currNode);
 		currNode = nextNode;
 	}
+	*head = NULL;
 }
