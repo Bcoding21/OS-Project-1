@@ -11,7 +11,7 @@ struct Node* create_list() {
 
 int add_to_list(struct Node* head, char* cString) {
 	if (!head) { return -1; }
-	if (!head->next) {
+	if (!head->next && !head->str) {
 		head->str = strdup(cString);
 		return 0;
 	}
@@ -33,22 +33,22 @@ struct Node* create_node(char* cString) {
 	return node;
 }
 
-char* remove_from_list(struct Node* head) {
+char* remove_from_list(struct Node** head) {
 	if (!head) { return NULL;}
-	struct Node* temp = head;
-	head = head->next;
+	struct Node* temp = *head;
+	*head = (*head)->next;
 	return temp->str;
 }
 
 
 void print_list(struct Node* head) {
-char snum[12];
 	if (!head) { return; }
 	struct Node* currNode = head;
 	while (currNode) {
-		printf("%s", currNode->str);
+		printf("%s ", currNode->str);
 		currNode = currNode->next;
 	}
+	printf("\n");
 }
 
 void flush_list(struct Node* head) {
@@ -64,12 +64,11 @@ void flush_list(struct Node* head) {
 
 void free_list(struct Node** head) {
 	if (!head) { return; }
-	struct Node* currNode = *head;
-	while (currNode) {
-		struct Node* nextNode = currNode->next;
-		free(currNode->str);
-		free(currNode);
-		currNode = nextNode;
+	while (*head) {
+		struct Node* nextNode = (*head)->next;
+		free((*head)->str);
+		free((*head));
+		*head = NULL;
+		head = &nextNode;
 	}
-	*head = NULL;
 }

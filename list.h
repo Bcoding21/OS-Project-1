@@ -22,7 +22,7 @@ extern int add_to_list(struct Node*, char*);
 /* Removes the string from the front of the list and
 * returns a pointer to it. The caller is expected to free
 * the string returned when finished with it. */
-extern char* remove_from_list(struct Node*);
+extern char* remove_from_list(struct Node**);
 
 /* Prints every string in the list, with a new line
 * character at the end of each string */
