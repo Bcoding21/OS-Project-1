@@ -3,47 +3,46 @@
 int main(){
 
 	puts("Created list");
-	struct Node* head = create_list();
+	list* list = create_list();
 	puts("Printing list");
-	print_list(head);
+	print_list(list);
 
 	puts("Adding");
-	add_to_list(head, "this");
-	print_list(head);
-	add_to_list(head, "is");
-	print_list(head);
-	add_to_list(head, "test");
-	print_list(head);
+	add_to_list(list, "this");
+	print_list(list);
+	add_to_list(list, "is");
+	print_list(list);
+	add_to_list(list, "test");
+	print_list(list);
 
 
 	puts("Removing");
-	print_list(head);
-	remove_from_list(&head);
-	print_list(head);
-	remove_from_list(&head);
-	print_list(head);
-	remove_from_list(&head);
-	print_list(head);
+	print_list(list);
+	remove_from_list(list);
+	print_list(list);
+	remove_from_list(list);
+	print_list(list);
+	remove_from_list(list);
+	print_list(list);
 
 
 	puts("Adding");
-	head = create_list();
-	add_to_list(head, "this");
-	print_list(head);
-	add_to_list(head, "is");
-	print_list(head);
-	add_to_list(head, "test");
-	print_list(head);
+	add_to_list(list, "this");
+	print_list(list);
+	add_to_list(list, "is");
+	print_list(list);
+	add_to_list(list, "test");
+	print_list(list);
 
 	puts("Flushing");
-	flush_list(head);
+	flush_list(list);
 	printf("Output: ");
-	print_list(head);
+	print_list(list);
 
 	puts("Freeing");
-	free_list(&head);
+	free_list(list);
 	printf("Output: ");
-	print_list(head);
+	print_list(list);
 
 }
 
